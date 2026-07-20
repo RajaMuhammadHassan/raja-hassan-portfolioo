@@ -3,7 +3,8 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
 import { Section, PlaceholderCard } from "@/components/portfolio/Section";
 import { Footer } from "@/components/portfolio/Footer";
-import { Github, Linkedin, Mail, MapPin, Download, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Download, ExternalLink } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/portfolio/SocialIcons";
 
 export const Route = createFileRoute("/")({
   component: Portfolio,

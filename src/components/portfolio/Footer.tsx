@@ -1,9 +1,10 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, XIcon } from "./SocialIcons";
 
 const socials = [
-  { icon: Github, label: "GitHub", href: "#" },
-  { icon: Linkedin, label: "LinkedIn", href: "#" },
-  { icon: Twitter, label: "Twitter", href: "#" },
+  { icon: GithubIcon, label: "GitHub", href: "#" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: "#" },
+  { icon: XIcon, label: "X (Twitter)", href: "#" },
   { icon: Mail, label: "Email", href: "#contact" },
 ];
 
@@ -22,7 +23,7 @@ export function Footer() {
               aria-label={s.label}
               className="grid h-10 w-10 place-items-center rounded-full glass transition hover:bg-white/10 hover:text-primary"
             >
-              <s.icon size={16} />
+              <s.icon width={16} height={16} />
             </a>
           ))}
         </div>
