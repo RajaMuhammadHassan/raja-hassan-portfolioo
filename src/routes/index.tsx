@@ -3,6 +3,7 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
 import { Section, PlaceholderCard } from "@/components/portfolio/Section";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageLoader } from "@/components/portfolio/PageLoader";
 import { Mail, MapPin, Download, ExternalLink } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/portfolio/SocialIcons";
 
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/")({
 function Portfolio() {
   return (
     <div className="relative min-h-screen">
+      <PageLoader />
       <Navbar />
       <main>
         <Hero />
