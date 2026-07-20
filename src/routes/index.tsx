@@ -149,10 +149,10 @@ function Portfolio() {
               </ul>
               <div className="mt-6 flex gap-2">
                 <a href="#" aria-label="GitHub" className="grid h-10 w-10 place-items-center rounded-full glass hover:text-primary">
-                  <Github size={16} />
+                  <GithubIcon width={16} height={16} />
                 </a>
                 <a href="#" aria-label="LinkedIn" className="grid h-10 w-10 place-items-center rounded-full glass hover:text-primary">
-                  <Linkedin size={16} />
+                  <LinkedinIcon width={16} height={16} />
                 </a>
               </div>
             </div>
