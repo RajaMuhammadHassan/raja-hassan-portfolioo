@@ -6,14 +6,24 @@ import { Particles } from "./Particles";
  * Floating tech chips positioned around the avatar card.
  * Each chip is fully editable — tweak label, position, delay, rotation.
  */
-const techChips = [
-  { label: "Java",   top: "-4%",  left: "-8%",  delay: 0.2, float: "animate-float" },
-  { label: "C++",    top: "18%",  right: "-12%", delay: 0.35, float: "animate-float-slower" },
-  { label: "Python", top: "48%",  left: "-14%", delay: 0.5, float: "animate-float-slower" },
-  { label: "React",  top: "62%",  right: "-10%", delay: 0.6, float: "animate-float" },
-  { label: "GitHub", bottom: "2%", left: "6%",   delay: 0.75, float: "animate-float" },
-  { label: "AI",     bottom: "-2%", right: "10%", delay: 0.9, float: "animate-float-slower" },
-] as const;
+type TechChip = {
+  label: string;
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+  delay: number;
+  float: string;
+};
+
+const techChips: TechChip[] = [
+  { label: "Java",   top: "-4%",   left: "-8%",   delay: 0.2,  float: "animate-float" },
+  { label: "C++",    top: "18%",   right: "-12%", delay: 0.35, float: "animate-float-slower" },
+  { label: "Python", top: "48%",   left: "-14%",  delay: 0.5,  float: "animate-float-slower" },
+  { label: "React",  top: "62%",   right: "-10%", delay: 0.6,  float: "animate-float" },
+  { label: "GitHub", bottom: "2%", left: "6%",    delay: 0.75, float: "animate-float" },
+  { label: "AI",     bottom: "-2%", right: "10%", delay: 0.9,  float: "animate-float-slower" },
+];
 
 /** Animated code lines rendered behind the avatar card. */
 const codeLines = [
