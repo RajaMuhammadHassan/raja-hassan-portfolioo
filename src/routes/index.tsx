@@ -3,6 +3,7 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
 import { Section, PlaceholderCard } from "@/components/portfolio/Section";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageLoader } from "@/components/portfolio/PageLoader";
 import { Mail, MapPin, Download, ExternalLink } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/portfolio/SocialIcons";
 
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/")({
 function Portfolio() {
   return (
     <div className="relative min-h-screen">
+      <PageLoader />
       <Navbar />
       <main>
         <Hero />
@@ -50,19 +52,40 @@ function Portfolio() {
         >
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div
+              <article
                 key={i}
-                className="group glass overflow-hidden rounded-2xl p-6 transition hover:bg-white/8"
+                className="glow-border group relative overflow-hidden rounded-2xl transition duration-500 hover:-translate-y-1"
               >
-                <div className="mb-4 aspect-video rounded-xl bg-gradient-to-br from-[oklch(0.72_0.22_265/0.2)] to-[oklch(0.62_0.24_300/0.2)] ring-1 ring-white/10" />
-                <div className="flex items-center justify-between">
-                  <h3 className="font-display text-lg font-semibold">Project {i}</h3>
-                  <ExternalLink size={16} className="text-muted-foreground transition group-hover:text-primary" />
+                <div className="glow-border-inner glass-strong rounded-2xl p-6">
+                  <div className="relative mb-4 aspect-video overflow-hidden rounded-xl ring-1 ring-white/10">
+                    <div className="absolute inset-0 bg-[radial-gradient(600px_200px_at_20%_0%,oklch(0.82_0.16_210/0.35),transparent_60%),radial-gradient(500px_200px_at_100%_100%,oklch(0.62_0.24_300/0.35),transparent_60%)]" />
+                    <div className="absolute inset-0 bg-grid opacity-40" />
+                    <div className="absolute bottom-3 left-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                      /project-{i.toString().padStart(2, "0")}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-display text-lg font-semibold">Project {i}</h3>
+                    <ExternalLink
+                      size={16}
+                      className="text-muted-foreground transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[oklch(0.82_0.16_210)]"
+                    />
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Placeholder description. Project details to be added.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {["TypeScript", "React", "—"].map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] uppercase tracking-widest text-muted-foreground"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Placeholder description. Project details to be added.
-                </p>
-              </div>
+              </article>
             ))}
           </div>
         </Section>
