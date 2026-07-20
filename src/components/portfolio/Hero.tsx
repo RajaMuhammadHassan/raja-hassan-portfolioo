@@ -1,52 +1,40 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, ChevronDown } from "lucide-react";
+import { ArrowRight, Download, ChevronDown, Sparkles } from "lucide-react";
 import { Particles } from "./Particles";
 
-const codeSnippets = [
-  {
-    top: "8%",
-    left: "-6%",
-    rotate: -8,
-    delay: 0.2,
-    lines: [
-      `const engineer = {`,
-      `  name: "Raja Hassan",`,
-      `  focus: "web",`,
-      `};`,
-    ],
-  },
-  {
-    top: "55%",
-    left: "-10%",
-    rotate: 6,
-    delay: 0.5,
-    lines: [
-      `function build() {`,
-      `  return <Elegant />;`,
-      `}`,
-    ],
-  },
-  {
-    top: "18%",
-    right: "-8%",
-    rotate: 10,
-    delay: 0.4,
-    lines: [
-      `// shipping quality`,
-      `await ship(product);`,
-    ],
-  },
-  {
-    top: "62%",
-    right: "-4%",
-    rotate: -6,
-    delay: 0.6,
-    lines: [
-      `type Craft = {`,
-      `  precision: true;`,
-      `};`,
-    ],
-  },
+/**
+ * Floating tech chips positioned around the avatar card.
+ * Each chip is fully editable — tweak label, position, delay, rotation.
+ */
+type TechChip = {
+  label: string;
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+  delay: number;
+  float: string;
+};
+
+const techChips: TechChip[] = [
+  { label: "Java",   top: "-4%",   left: "-8%",   delay: 0.2,  float: "animate-float" },
+  { label: "C++",    top: "18%",   right: "-12%", delay: 0.35, float: "animate-float-slower" },
+  { label: "Python", top: "48%",   left: "-14%",  delay: 0.5,  float: "animate-float-slower" },
+  { label: "React",  top: "62%",   right: "-10%", delay: 0.6,  float: "animate-float" },
+  { label: "GitHub", bottom: "2%", left: "6%",    delay: 0.75, float: "animate-float" },
+  { label: "AI",     bottom: "-2%", right: "10%", delay: 0.9,  float: "animate-float-slower" },
+];
+
+/** Animated code lines rendered behind the avatar card. */
+const codeLines = [
+  `const engineer = { name: "Raja Hassan" };`,
+  `function craft<T extends Idea>(i: T) {`,
+  `  return build(i).then(ship).catch(retry);`,
+  `}`,
+  `await deploy({ quality: "premium" });`,
+  `// designing the future, one commit at a time`,
+  `type Stack = "Java" | "C++" | "Python" | "React";`,
+  `interface Avatar { interactive: true; dimension: 3; }`,
 ];
 
 export function Hero() {
@@ -62,36 +50,35 @@ export function Hero() {
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="animate-float absolute left-[10%] top-[18%] h-80 w-80 rounded-full bg-[oklch(0.68_0.22_258/0.28)] blur-3xl" />
-        <div
-          className="animate-float-slower absolute right-[8%] top-[45%] h-96 w-96 rounded-full bg-[oklch(0.62_0.24_300/0.22)] blur-3xl"
-        />
+        <div className="animate-float-slower absolute right-[8%] top-[45%] h-96 w-96 rounded-full bg-[oklch(0.62_0.24_300/0.22)] blur-3xl" />
         <div
           className="animate-float absolute left-[40%] bottom-[8%] h-72 w-72 rounded-full bg-[oklch(0.82_0.16_210/0.16)] blur-3xl"
           style={{ animationDelay: "1.5s" }}
         />
       </div>
 
-      <div className="container-page grid items-center gap-16 lg:grid-cols-[1.15fr_1fr]">
-        {/* Copy */}
+      <div className="container-page grid items-center gap-16 lg:grid-cols-[1.1fr_1fr]">
+        {/* Left — Copy */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
+          {/* Availability badge */}
           <motion.span
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+            className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[oklch(0.82_0.16_210)] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[oklch(0.82_0.16_210)]" />
             </span>
-            Available for opportunities
+            <span className="text-foreground/90">Available for Internships</span>
           </motion.span>
 
-          <h1 className="mt-6 font-display text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.02]">
+          <h1 className="mt-7 font-display font-bold leading-[0.98] tracking-[-0.02em] text-[clamp(2.75rem,7.5vw,5.75rem)]">
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -110,11 +97,22 @@ export function Hero() {
             </motion.span>
           </h1>
 
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+            className="mt-5 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.35em] text-muted-foreground"
+          >
+            <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+            <span>Software Engineer</span>
+            <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+          </motion.div>
+
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+            transition={{ delay: 0.45 }}
+            className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-lg"
           >
             Software Engineering student at{" "}
             <span className="text-foreground">
@@ -124,29 +122,44 @@ export function Hero() {
             precise typography, considered motion, production-grade code.
           </motion.p>
 
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55 }}
-            className="mt-10 flex flex-wrap items-center gap-3"
+            transition={{ delay: 0.6 }}
+            className="mt-10 flex flex-wrap items-center gap-4"
           >
             <a
               href="#projects"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] px-6 py-3 text-sm font-medium text-primary-foreground shadow-[0_10px_40px_-10px_oklch(0.68_0.22_258/0.6)] transition-transform hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full p-[1px]"
             >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <span className="relative">View my work</span>
-              <ArrowRight
-                size={16}
-                className="relative transition-transform group-hover:translate-x-1"
-              />
+              <span className="absolute inset-0 rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,oklch(0.82_0.16_210),oklch(0.68_0.22_258),oklch(0.62_0.24_300),oklch(0.82_0.16_210))] opacity-90" />
+              <span className="relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_20px_50px_-15px_oklch(0.68_0.22_258/0.75)] transition-transform group-hover:-translate-y-0.5">
+                <span className="pointer-events-none absolute inset-0 -translate-x-full overflow-hidden rounded-full">
+                  <span className="block h-full w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent blur-sm transition-transform duration-[900ms] group-hover:translate-x-[300%]" />
+                </span>
+                <span className="relative">View my work</span>
+                <ArrowRight
+                  size={16}
+                  className="relative transition-transform group-hover:translate-x-1"
+                />
+              </span>
             </a>
+
             <a
               href="#resume"
-              className="group inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium transition hover:bg-white/10"
+              className="group relative inline-flex items-center gap-2 rounded-full glass px-6 py-3.5 text-sm font-semibold text-foreground/90 transition-all hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-foreground"
             >
               <Download size={16} className="transition-transform group-hover:-translate-y-0.5" />
-              Resume
+              Download Resume
+            </a>
+
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <span className="story-link">Let's talk</span>
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
@@ -154,7 +167,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.75 }}
+            transition={{ delay: 0.8 }}
             className="mt-12 grid max-w-md grid-cols-3 divide-x divide-white/10 rounded-2xl glass py-4 text-center"
           >
             {[
@@ -172,69 +185,141 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Portrait card with floating code */}
+        {/* Right — 3D Avatar placeholder card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.2 }}
           className="relative mx-auto w-full max-w-md"
         >
-          {/* Floating code snippets behind card */}
-          <div className="pointer-events-none absolute inset-0 hidden md:block">
-            {codeSnippets.map((s, i) => (
-              <motion.pre
+          {/* Animated coding lines behind card */}
+          <div className="pointer-events-none absolute -inset-x-10 inset-y-0 -z-10 hidden overflow-hidden opacity-60 md:block">
+            {codeLines.map((ln, i) => (
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: s.delay, duration: 0.8 }}
-                style={{
-                  top: s.top,
-                  left: s.left,
-                  right: s.right,
-                  transform: `rotate(${s.rotate}deg)`,
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: [0, 0.6, 0.6, 0], x: [-30, 0, 0, 30] }}
+                transition={{
+                  duration: 6,
+                  delay: i * 0.7,
+                  repeat: Infinity,
+                  repeatDelay: 3,
+                  ease: "easeInOut",
                 }}
-                className="animate-float absolute rounded-xl glass px-3 py-2 font-mono text-[10px] leading-relaxed text-muted-foreground shadow-lg"
+                style={{ top: `${(i * 12 + 6) % 90}%` }}
+                className="absolute left-0 right-0 whitespace-nowrap font-mono text-[11px] tracking-tight text-[oklch(0.82_0.16_210/0.65)]"
               >
-                {s.lines.map((ln, j) => (
-                  <div key={j}>
-                    <span className="text-[oklch(0.82_0.16_210)]">{ln}</span>
-                  </div>
-                ))}
-              </motion.pre>
+                <span className="text-muted-foreground/50">{String(i + 1).padStart(2, "0")}</span>{"  "}
+                <span>{ln}</span>
+              </motion.div>
             ))}
           </div>
 
-          {/* Glow */}
+          {/* Floating tech chips around the card */}
+          <div className="pointer-events-none absolute inset-0">
+            {techChips.map((chip, i) => (
+              <motion.div
+                key={chip.label}
+                initial={{ opacity: 0, scale: 0.6 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: chip.delay, duration: 0.6, ease: "easeOut" }}
+                style={{
+                  top: chip.top,
+                  left: chip.left,
+                  right: chip.right,
+                  bottom: chip.bottom,
+                  animationDelay: `${i * 0.3}s`,
+                }}
+                className={`${chip.float} pointer-events-auto absolute z-20`}
+              >
+                <div className="group relative rounded-2xl p-[1px] transition-transform hover:scale-110">
+                  <span className="absolute inset-0 rounded-2xl bg-[conic-gradient(from_0deg,oklch(0.82_0.16_210/0.6),oklch(0.68_0.22_258/0.6),oklch(0.62_0.24_300/0.6),oklch(0.82_0.16_210/0.6))] opacity-70" />
+                  <div className="relative flex items-center gap-2 rounded-2xl glass-strong px-3.5 py-2 shadow-[0_10px_30px_-10px_oklch(0.68_0.22_258/0.5)]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-br from-[oklch(0.82_0.16_210)] to-[oklch(0.62_0.24_300)]" />
+                    <span className="font-mono text-[11px] font-semibold tracking-wide text-foreground/90">
+                      {chip.label}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Outer glow */}
           <div className="absolute -inset-6 rounded-[2.5rem] bg-[conic-gradient(from_180deg_at_50%_50%,oklch(0.82_0.16_210/0.35),oklch(0.68_0.22_258/0.35),oklch(0.62_0.24_300/0.35),oklch(0.82_0.16_210/0.35))] opacity-70 blur-2xl" />
 
           {/* Card */}
           <div className="glow-border relative rounded-[2rem]">
             <div className="glow-border-inner glass-strong relative aspect-[4/5] overflow-hidden rounded-[2rem] p-2">
-              <div className="relative grid h-full w-full place-items-center overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-white/[0.04] to-white/0">
-                {/* Decorative rings */}
-                <div className="pointer-events-none absolute inset-0">
-                  <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/5" />
-                  <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.04]" />
+              <div className="relative grid h-full w-full place-items-center overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-white/[0.05] to-white/0">
+                {/* Glowing animated rings */}
+                <div className="pointer-events-none absolute inset-0 grid place-items-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
+                    className="absolute h-72 w-72 rounded-full border border-[oklch(0.82_0.16_210/0.25)]"
+                    style={{
+                      maskImage:
+                        "conic-gradient(from 0deg, transparent 0deg, black 60deg, black 180deg, transparent 240deg)",
+                    }}
+                  />
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    className="absolute h-56 w-56 rounded-full border border-[oklch(0.68_0.22_258/0.3)]"
+                    style={{
+                      maskImage:
+                        "conic-gradient(from 90deg, transparent 0deg, black 90deg, black 200deg, transparent 280deg)",
+                    }}
+                  />
+                  <motion.div
+                    animate={{ scale: [1, 1.08, 1], opacity: [0.35, 0.6, 0.35] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute h-40 w-40 rounded-full border border-[oklch(0.62_0.24_300/0.4)]"
+                  />
+                  <motion.div
+                    animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0.45, 0.2] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                    className="absolute h-64 w-64 rounded-full bg-[radial-gradient(circle,oklch(0.68_0.22_258/0.25),transparent_70%)] blur-2xl"
+                  />
                 </div>
 
-                <div className="relative text-center">
-                  <div className="mx-auto grid h-28 w-28 place-items-center rounded-full bg-gradient-to-br from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] font-display text-4xl font-bold text-primary-foreground shadow-[0_20px_60px_-10px_oklch(0.68_0.22_258/0.6)]">
-                    RH
-                  </div>
-                  <p className="mt-5 text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
-                    Profile image
+                {/* Center placeholder content */}
+                <div className="relative z-10 flex flex-col items-center px-6 text-center">
+                  <motion.div
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative"
+                  >
+                    <div className="absolute inset-0 rounded-full bg-[oklch(0.68_0.22_258/0.5)] blur-2xl" />
+                    <div className="relative grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] shadow-[0_20px_60px_-10px_oklch(0.68_0.22_258/0.7)]">
+                      <Sparkles size={32} className="text-primary-foreground" strokeWidth={1.75} />
+                    </div>
+                  </motion.div>
+
+                  <p className="mt-6 font-display text-lg font-semibold tracking-tight text-foreground">
+                    Future Interactive
+                    <br />
+                    <span className="text-gradient">3D Avatar</span>
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground/70">Placeholder — replace later</p>
+                  <p className="mt-3 max-w-[16rem] text-[11px] leading-relaxed text-muted-foreground">
+                    A real-time interactive character will live here — reserved space for the upcoming 3D experience.
+                  </p>
+
+                  <span className="mt-5 inline-flex items-center gap-1.5 rounded-full glass px-3 py-1 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[oklch(0.82_0.16_210)]" />
+                    Coming soon
+                  </span>
                 </div>
 
-                {/* Card corner meta */}
+                {/* Card chrome */}
                 <div className="absolute left-4 top-4 flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-[oklch(0.82_0.16_210)]" />
                   <span className="h-2 w-2 rounded-full bg-[oklch(0.68_0.22_258)]" />
                   <span className="h-2 w-2 rounded-full bg-[oklch(0.62_0.24_300)]" />
                 </div>
                 <div className="absolute right-4 top-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  v1.0
+                  avatar.tsx
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                   <span>NUML • SE</span>
