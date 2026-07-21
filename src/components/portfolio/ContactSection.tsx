@@ -61,7 +61,7 @@ export function ContactSection() {
                 aria-label={s.label}
                 className="grid h-10 w-10 place-items-center rounded-full glass transition hover:-translate-y-0.5 hover:text-foreground"
               >
-                <s.icon size={16} width={16} height={16} />
+                <s.icon width={16} height={16} />
               </a>
             ))}
           </div>
