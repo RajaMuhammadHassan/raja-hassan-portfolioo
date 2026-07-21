@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, MessageCircle, Send, Instagram, MessagesSquare } from "lucide-react";
-import { GithubIcon, LinkedinIcon, XIcon } from "./SocialIcons";
+import { Mail, MapPin, Phone, MessageCircle, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon, XIcon, InstagramIcon, DiscordIcon } from "./SocialIcons";
 
 const channels = [
   { icon: Mail, label: "Email", value: "email@placeholder.dev" },
@@ -14,8 +14,8 @@ const socials = [
   { icon: GithubIcon, label: "GitHub" },
   { icon: LinkedinIcon, label: "LinkedIn" },
   { icon: XIcon, label: "X" },
-  { icon: Instagram, label: "Instagram" },
-  { icon: MessagesSquare, label: "Discord" },
+  { icon: InstagramIcon, label: "Instagram" },
+  { icon: DiscordIcon, label: "Discord" },
 ];
 
 export function ContactSection() {

@@ -23,3 +23,21 @@ export function XIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function DiscordIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3c-.2.36-.43.84-.59 1.22a18.27 18.27 0 0 0-5.94 0C9.86 3.84 9.62 3.36 9.42 3c-1.31.22-2.57.6-3.76 1.37C1.61 9.09.68 13.69 1.14 18.22c1.79 1.32 3.52 2.13 5.22 2.66.42-.57.79-1.18 1.11-1.82-.62-.23-1.21-.52-1.77-.86.15-.11.29-.22.43-.34 3.42 1.58 7.11 1.58 10.5 0 .14.12.28.23.43.34-.56.34-1.15.63-1.77.86.32.64.69 1.25 1.11 1.82 1.7-.53 3.43-1.34 5.22-2.66.55-5.29-.9-9.85-3.31-13.85ZM8.52 15.6c-1.11 0-2.02-1.03-2.02-2.29 0-1.26.89-2.29 2.02-2.29 1.13 0 2.04 1.03 2.02 2.29 0 1.26-.89 2.29-2.02 2.29Zm6.96 0c-1.11 0-2.02-1.03-2.02-2.29 0-1.26.89-2.29 2.02-2.29 1.13 0 2.04 1.03 2.02 2.29 0 1.26-.89 2.29-2.02 2.29Z" />
+    </svg>
+  );
+}
