@@ -1,25 +1,16 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Award, X } from "lucide-react";
-
-type Cert = { title: string; issuer: string; date: string };
-
-const certs: Cert[] = [
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-];
+import { Award, X, ExternalLink } from "lucide-react";
+import { certificates } from "@/config/portfolio";
 
 export function CertificatesGrid() {
   const [active, setActive] = useState<number | null>(null);
+  const current = active !== null ? certificates[active] : null;
 
   return (
     <>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {certs.map((c, i) => (
+        {certificates.map((c, i) => (
           <motion.button
             key={i}
             onClick={() => setActive(i)}
@@ -30,11 +21,22 @@ export function CertificatesGrid() {
             className="group relative overflow-hidden rounded-2xl glass p-5 text-left transition duration-500 hover:-translate-y-1 hover:bg-white/[0.06]"
           >
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-white/10">
-              <div className="absolute inset-0 bg-[radial-gradient(500px_200px_at_20%_0%,oklch(0.82_0.16_210/0.3),transparent_60%),radial-gradient(500px_200px_at_100%_100%,oklch(0.62_0.24_300/0.3),transparent_60%)]" />
-              <div className="absolute inset-0 bg-grid opacity-40" />
-              <div className="absolute inset-0 grid place-items-center">
-                <Award size={30} className="text-foreground/60" />
-              </div>
+              {c.image ? (
+                <img
+                  src={c.image}
+                  alt={`${c.title} preview`}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-[radial-gradient(500px_200px_at_20%_0%,oklch(0.82_0.16_210/0.3),transparent_60%),radial-gradient(500px_200px_at_100%_100%,oklch(0.62_0.24_300/0.3),transparent_60%)]" />
+                  <div className="absolute inset-0 bg-grid opacity-40" />
+                  <div className="absolute inset-0 grid place-items-center">
+                    <Award size={30} className="text-foreground/60" />
+                  </div>
+                </>
+              )}
               <span className="absolute left-3 top-3 rounded-full glass px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 Certificate
               </span>
@@ -50,12 +52,12 @@ export function CertificatesGrid() {
       </div>
 
       <AnimatePresence>
-        {active !== null && (
+        {current && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] grid place-items-center bg-black/60 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-[70] grid place-items-center bg-black/60 p-4 backdrop-blur-sm"
             onClick={() => setActive(null)}
           >
             <motion.div
@@ -73,22 +75,38 @@ export function CertificatesGrid() {
                 <X size={16} />
               </button>
               <div className="aspect-video overflow-hidden rounded-xl ring-1 ring-white/10">
-                <div className="relative h-full w-full bg-[radial-gradient(600px_240px_at_20%_0%,oklch(0.82_0.16_210/0.3),transparent_60%),radial-gradient(600px_240px_at_100%_100%,oklch(0.62_0.24_300/0.3),transparent_60%)]">
-                  <div className="absolute inset-0 bg-grid opacity-40" />
-                  <div className="absolute inset-0 grid place-items-center">
-                    <Award size={48} className="text-foreground/70" />
+                {current.image ? (
+                  <img
+                    src={current.image}
+                    alt={`${current.title} preview`}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="relative h-full w-full bg-[radial-gradient(600px_240px_at_20%_0%,oklch(0.82_0.16_210/0.3),transparent_60%),radial-gradient(600px_240px_at_100%_100%,oklch(0.62_0.24_300/0.3),transparent_60%)]">
+                    <div className="absolute inset-0 bg-grid opacity-40" />
+                    <div className="absolute inset-0 grid place-items-center">
+                      <Award size={48} className="text-foreground/70" />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
-              <h3 className="mt-5 font-display text-xl font-semibold">
-                {certs[active].title}
-              </h3>
+              <h3 className="mt-5 font-display text-xl font-semibold">{current.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">
-                {certs[active].issuer} • {certs[active].date}
+                {current.issuer} • {current.date}
               </p>
               <p className="mt-4 text-sm text-foreground/80">
-                Certificate details will be added here.
+                {current.description ?? "Certificate details will be added here."}
               </p>
+              {current.credentialUrl && (
+                <a
+                  href={current.credentialUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-5 inline-flex items-center gap-1.5 rounded-full glass px-4 py-2 text-xs text-foreground/90 transition hover:text-foreground"
+                >
+                  <ExternalLink size={13} /> View credential
+                </a>
+              )}
             </motion.div>
           </motion.div>
         )}

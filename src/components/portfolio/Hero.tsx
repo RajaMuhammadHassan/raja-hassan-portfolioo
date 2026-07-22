@@ -1,47 +1,13 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download, ChevronDown, Sparkles } from "lucide-react";
 import { Particles } from "./Particles";
-
-/**
- * Floating tech chips positioned around the avatar card.
- * Each chip is fully editable — tweak label, position, delay, rotation.
- */
-type TechChip = {
-  label: string;
-  top?: string;
-  left?: string;
-  right?: string;
-  bottom?: string;
-  delay: number;
-  float: string;
-};
-
-const techChips: TechChip[] = [
-  { label: "Java",   top: "-4%",   left: "-8%",   delay: 0.2,  float: "animate-float" },
-  { label: "C++",    top: "18%",   right: "-12%", delay: 0.35, float: "animate-float-slower" },
-  { label: "Python", top: "48%",   left: "-14%",  delay: 0.5,  float: "animate-float-slower" },
-  { label: "React",  top: "62%",   right: "-10%", delay: 0.6,  float: "animate-float" },
-  { label: "GitHub", bottom: "2%", left: "6%",    delay: 0.75, float: "animate-float" },
-  { label: "AI",     bottom: "-2%", right: "10%", delay: 0.9,  float: "animate-float-slower" },
-];
-
-/** Animated code lines rendered behind the avatar card. */
-const codeLines = [
-  `const engineer = { name: "Raja Hassan" };`,
-  `function craft<T extends Idea>(i: T) {`,
-  `  return build(i).then(ship).catch(retry);`,
-  `}`,
-  `await deploy({ quality: "premium" });`,
-  `// designing the future, one commit at a time`,
-  `type Stack = "Java" | "C++" | "Python" | "React";`,
-  `interface Avatar { interactive: true; dimension: 3; }`,
-];
+import { hero, site } from "@/config/portfolio";
 
 export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20"
+      className="relative flex min-h-screen items-center overflow-hidden pb-20 pt-32"
     >
       {/* Layered ambience */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-grid" />
@@ -52,7 +18,7 @@ export function Hero() {
         <div className="animate-float absolute left-[10%] top-[18%] h-80 w-80 rounded-full bg-[oklch(0.68_0.22_258/0.28)] blur-3xl" />
         <div className="animate-float-slower absolute right-[8%] top-[45%] h-96 w-96 rounded-full bg-[oklch(0.62_0.24_300/0.22)] blur-3xl" />
         <div
-          className="animate-float absolute left-[40%] bottom-[8%] h-72 w-72 rounded-full bg-[oklch(0.82_0.16_210/0.16)] blur-3xl"
+          className="animate-float absolute bottom-[8%] left-[40%] h-72 w-72 rounded-full bg-[oklch(0.82_0.16_210/0.16)] blur-3xl"
           style={{ animationDelay: "1.5s" }}
         />
       </div>
@@ -75,7 +41,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[oklch(0.82_0.16_210)] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[oklch(0.82_0.16_210)]" />
             </span>
-            <span className="text-foreground/90">Available for Internships</span>
+            <span className="text-foreground/90">{site.availability}</span>
           </motion.span>
 
           <h1 className="mt-7 font-display font-bold leading-[0.98] tracking-[-0.02em] text-[clamp(2.75rem,7.5vw,5.75rem)]">
@@ -85,7 +51,7 @@ export function Hero() {
               transition={{ delay: 0.15, duration: 0.7 }}
               className="block"
             >
-              Raja Muhammad
+              {hero.firstName}
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -93,7 +59,7 @@ export function Hero() {
               transition={{ delay: 0.25, duration: 0.7 }}
               className="block text-gradient"
             >
-              Hassan
+              {hero.lastName}
             </motion.span>
           </h1>
 
@@ -104,7 +70,7 @@ export function Hero() {
             className="mt-5 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.35em] text-muted-foreground"
           >
             <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-            <span>Software Engineer</span>
+            <span>{hero.tagline}</span>
             <span className="h-px w-10 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
           </motion.div>
 
@@ -115,11 +81,7 @@ export function Hero() {
             className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-lg"
           >
             Software Engineering student at{" "}
-            <span className="text-foreground">
-              National University of Modern Languages (NUML)
-            </span>
-            . I design and engineer refined, high-performance digital products —
-            precise typography, considered motion, production-grade code.
+            <span className="text-foreground">{site.university}</span>. {hero.bio}
           </motion.p>
 
           {/* CTAs */}
@@ -130,7 +92,7 @@ export function Hero() {
             className="mt-10 flex flex-wrap items-center gap-4"
           >
             <a
-              href="#projects"
+              href={hero.cta.primary.href}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full p-[1px]"
             >
               <span className="absolute inset-0 rounded-full bg-[conic-gradient(from_180deg_at_50%_50%,oklch(0.82_0.16_210),oklch(0.68_0.22_258),oklch(0.62_0.24_300),oklch(0.82_0.16_210))] opacity-90" />
@@ -138,7 +100,7 @@ export function Hero() {
                 <span className="pointer-events-none absolute inset-0 -translate-x-full overflow-hidden rounded-full">
                   <span className="block h-full w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent blur-sm transition-transform duration-[900ms] group-hover:translate-x-[300%]" />
                 </span>
-                <span className="relative">View my work</span>
+                <span className="relative">{hero.cta.primary.label}</span>
                 <ArrowRight
                   size={16}
                   className="relative transition-transform group-hover:translate-x-1"
@@ -147,42 +109,41 @@ export function Hero() {
             </a>
 
             <a
-              href="#resume"
+              href={hero.cta.secondary.href}
               className="group relative inline-flex items-center gap-2 rounded-full glass px-6 py-3.5 text-sm font-semibold text-foreground/90 transition-all hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-foreground"
             >
               <Download size={16} className="transition-transform group-hover:-translate-y-0.5" />
-              Download Resume
+              {hero.cta.secondary.label}
             </a>
 
             <a
-              href="#contact"
+              href={hero.cta.tertiary.href}
               className="group inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              <span className="story-link">Let's talk</span>
+              <span className="story-link">{hero.cta.tertiary.label}</span>
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
           {/* Meta strip */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-12 grid max-w-md grid-cols-3 divide-x divide-white/10 rounded-2xl glass py-4 text-center"
-          >
-            {[
-              { k: "Focus", v: "Full-stack" },
-              { k: "Based", v: "Pakistan" },
-              { k: "Status", v: "Student" },
-            ].map((m) => (
-              <div key={m.k} className="px-3">
-                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                  {m.k}
+          {hero.meta.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="mt-12 grid max-w-md divide-x divide-white/10 rounded-2xl glass py-4 text-center"
+              style={{ gridTemplateColumns: `repeat(${hero.meta.length}, minmax(0, 1fr))` }}
+            >
+              {hero.meta.map((m) => (
+                <div key={m.k} className="px-3">
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {m.k}
+                  </div>
+                  <div className="mt-1 font-display text-sm font-semibold">{m.v}</div>
                 </div>
-                <div className="mt-1 font-display text-sm font-semibold">{m.v}</div>
-              </div>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
+          )}
         </motion.div>
 
         {/* Right — 3D Avatar placeholder card */}
@@ -194,7 +155,7 @@ export function Hero() {
         >
           {/* Animated coding lines behind card */}
           <div className="pointer-events-none absolute -inset-x-10 inset-y-0 -z-10 hidden overflow-hidden opacity-60 md:block">
-            {codeLines.map((ln, i) => (
+            {hero.codeLines.map((ln, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -30 }}
@@ -209,7 +170,10 @@ export function Hero() {
                 style={{ top: `${(i * 12 + 6) % 90}%` }}
                 className="absolute left-0 right-0 whitespace-nowrap font-mono text-[11px] tracking-tight text-[oklch(0.82_0.16_210/0.65)]"
               >
-                <span className="text-muted-foreground/50">{String(i + 1).padStart(2, "0")}</span>{"  "}
+                <span className="text-muted-foreground/50">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {"  "}
                 <span>{ln}</span>
               </motion.div>
             ))}
@@ -217,7 +181,7 @@ export function Hero() {
 
           {/* Floating tech chips around the card */}
           <div className="pointer-events-none absolute inset-0">
-            {techChips.map((chip, i) => (
+            {hero.techChips.map((chip, i) => (
               <motion.div
                 key={chip.label}
                 initial={{ opacity: 0, scale: 0.6 }}
@@ -298,17 +262,17 @@ export function Hero() {
                   </motion.div>
 
                   <p className="mt-6 font-display text-lg font-semibold tracking-tight text-foreground">
-                    Future Interactive
+                    {hero.avatar.title}
                     <br />
-                    <span className="text-gradient">3D Avatar</span>
+                    <span className="text-gradient">{hero.avatar.accent}</span>
                   </p>
                   <p className="mt-3 max-w-[16rem] text-[11px] leading-relaxed text-muted-foreground">
-                    A real-time interactive character will live here — reserved space for the upcoming 3D experience.
+                    {hero.avatar.caption}
                   </p>
 
                   <span className="mt-5 inline-flex items-center gap-1.5 rounded-full glass px-3 py-1 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[oklch(0.82_0.16_210)]" />
-                    Coming soon
+                    {hero.avatar.badge}
                   </span>
                 </div>
 
@@ -319,10 +283,10 @@ export function Hero() {
                   <span className="h-2 w-2 rounded-full bg-[oklch(0.62_0.24_300)]" />
                 </div>
                 <div className="absolute right-4 top-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  avatar.tsx
+                  {hero.avatar.fileLabel}
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  <span>NUML • SE</span>
+                  <span>{hero.avatar.statusLabel}</span>
                   <span className="text-[oklch(0.82_0.16_210)]">● online</span>
                 </div>
               </div>
@@ -342,7 +306,7 @@ export function Hero() {
       >
         <span className="text-[10px] uppercase tracking-[0.35em]">Scroll</span>
         <span className="relative grid h-9 w-6 place-items-start rounded-full border border-white/15 pt-1.5">
-          <span className="h-1.5 w-1 animate-bounce-soft rounded-full bg-gradient-to-b from-[oklch(0.82_0.16_210)] to-[oklch(0.62_0.24_300)]" />
+          <span className="animate-bounce-soft h-1.5 w-1 rounded-full bg-gradient-to-b from-[oklch(0.82_0.16_210)] to-[oklch(0.62_0.24_300)]" />
         </span>
         <ChevronDown size={14} className="animate-bounce-soft" />
       </motion.a>

@@ -1,50 +1,35 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, MessageCircle, Send } from "lucide-react";
-import { GithubIcon, LinkedinIcon, XIcon, InstagramIcon, DiscordIcon } from "./SocialIcons";
-
-const channels = [
-  { icon: Mail, label: "Email", value: "email@placeholder.dev" },
-  { icon: Phone, label: "Phone", value: "+92 — — — — —" },
-  { icon: MessageCircle, label: "WhatsApp", value: "Handle to be added" },
-  { icon: MapPin, label: "Location", value: "Pakistan" },
-];
-
-const socials = [
-  { icon: GithubIcon, label: "GitHub" },
-  { icon: LinkedinIcon, label: "LinkedIn" },
-  { icon: XIcon, label: "X" },
-  { icon: InstagramIcon, label: "Instagram" },
-  { icon: DiscordIcon, label: "Discord" },
-];
+import { Send } from "lucide-react";
+import { contact, socials } from "@/config/portfolio";
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
-      <div className="glass-strong relative overflow-hidden rounded-2xl p-8">
+      <div className="glass-strong relative overflow-hidden rounded-3xl p-8">
         <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[oklch(0.62_0.24_300/0.18)] blur-3xl" />
-        <h3 className="font-display text-xl font-semibold">Get in touch</h3>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Open to internships, collaborations, and thoughtful conversations.
-        </p>
+        <h3 className="font-display text-xl font-semibold">{contact.headline}</h3>
+        <p className="mt-1 text-sm text-muted-foreground">{contact.subhead}</p>
 
         <ul className="mt-6 space-y-3">
-          {channels.map((c) => (
-            <li
-              key={c.label}
-              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3"
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-lg glass">
-                <c.icon size={15} />
-              </span>
-              <div className="min-w-0">
-                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                  {c.label}
+          {contact.channels.map((c) => (
+            <li key={c.label}>
+              <a
+                href={c.href}
+                className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 transition hover:-translate-y-0.5 hover:bg-white/[0.05]"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass">
+                  <c.icon size={15} />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    {c.label}
+                  </div>
+                  <div className="truncate text-sm text-foreground/90">{c.value}</div>
                 </div>
-                <div className="truncate text-sm text-foreground/90">{c.value}</div>
-              </div>
+              </a>
             </li>
           ))}
         </ul>
@@ -57,9 +42,12 @@ export function ContactSection() {
             {socials.map((s) => (
               <a
                 key={s.label}
-                href="#"
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={s.label}
-                className="grid h-10 w-10 place-items-center rounded-full glass transition hover:-translate-y-0.5 hover:text-foreground"
+                title={s.label}
+                className="grid h-10 w-10 place-items-center rounded-full glass text-muted-foreground transition hover:-translate-y-0.5 hover:text-foreground"
               >
                 <s.icon width={16} height={16} />
               </a>
@@ -78,7 +66,7 @@ export function ContactSection() {
           setSent(true);
           setTimeout(() => setSent(false), 3500);
         }}
-        className="glass rounded-2xl p-8"
+        className="glass rounded-3xl p-8"
       >
         <h3 className="font-display text-xl font-semibold">Send a message</h3>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -135,7 +123,7 @@ export function ContactSection() {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            {sent ? "Thanks — I'll get back to you soon." : "Response time: ~24–48h"}
+            {sent ? "Thanks — I'll get back to you soon." : contact.responseTime}
           </p>
           <button
             type="submit"
