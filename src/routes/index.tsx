@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Download, FileText } from "lucide-react";
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
 import { Section } from "@/components/portfolio/Section";
@@ -14,9 +15,21 @@ import { CertificatesGrid } from "@/components/portfolio/CertificatesGrid";
 import { EducationTimeline } from "@/components/portfolio/EducationTimeline";
 import { GithubSection } from "@/components/portfolio/GithubSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
-import { Download, FileText } from "lucide-react";
+import { resume, site } from "@/config/portfolio";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: site.seo.title },
+      { name: "description", content: site.seo.description },
+      { property: "og:title", content: site.seo.title },
+      { property: "og:description", content: site.seo.description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: site.seo.title },
+      { name: "twitter:description", content: site.seo.description },
+    ],
+  }),
   component: Portfolio,
 });
 
@@ -90,7 +103,7 @@ function Portfolio() {
           title="Full CV"
           description="A downloadable PDF resume will be available here."
         >
-          <div className="glass-strong relative overflow-hidden rounded-2xl p-8">
+          <div className="glass-strong relative overflow-hidden rounded-3xl p-8">
             <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[oklch(0.68_0.22_258/0.18)] blur-3xl" />
             <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
               <div>
@@ -98,22 +111,24 @@ function Portfolio() {
                   Resume
                 </span>
                 <h3 className="mt-3 font-display text-2xl font-semibold">
-                  A concise, engineering-first CV
+                  {resume.headline}
                 </h3>
                 <p className="mt-3 text-sm text-muted-foreground">
-                  The full PDF will be linked here once ready. Expect a clean,
-                  one-page overview covering education, skills, projects, and contact.
+                  {resume.description}
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a
-                    href="#"
+                    href={resume.downloadUrl}
+                    download={resume.fileName}
                     className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_20px_50px_-15px_oklch(0.68_0.22_258/0.65)] transition hover:-translate-y-0.5"
                   >
                     <Download size={15} />
                     Download PDF
                   </a>
                   <a
-                    href="#"
+                    href={resume.viewUrl}
+                    target="_blank"
+                    rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full glass px-5 py-3 text-sm font-semibold text-foreground/90 transition hover:-translate-y-0.5 hover:text-foreground"
                   >
                     <FileText size={15} />
@@ -147,7 +162,7 @@ function Portfolio() {
                     ))}
                   </div>
                   <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    <span>resume.pdf</span>
+                    <span>{resume.fileName}</span>
                     <span>preview</span>
                   </div>
                 </div>

@@ -1,64 +1,10 @@
 import { motion } from "framer-motion";
-import { Code2, Layout, Database, Wrench, Sparkles, Server } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
-type SkillGroup = {
-  icon: LucideIcon;
-  title: string;
-  hint: string;
-  items: string[];
-  accent: string; // oklch color
-};
-
-const groups: SkillGroup[] = [
-  {
-    icon: Code2,
-    title: "Programming Languages",
-    hint: "Core problem-solving stack",
-    items: ["Java", "C++", "Python", "JavaScript", "TypeScript"],
-    accent: "oklch(0.82 0.16 210)",
-  },
-  {
-    icon: Layout,
-    title: "Frontend",
-    hint: "Interfaces & experiences",
-    items: ["HTML", "CSS", "Tailwind", "React", "Next.js"],
-    accent: "oklch(0.68 0.22 258)",
-  },
-  {
-    icon: Server,
-    title: "Backend",
-    hint: "APIs & services (in progress)",
-    items: ["Node.js", "REST APIs", "Express", "—", "—"],
-    accent: "oklch(0.62 0.24 300)",
-  },
-  {
-    icon: Database,
-    title: "Databases",
-    hint: "Data & persistence",
-    items: ["SQL", "MySQL", "PostgreSQL", "SQLite", "—"],
-    accent: "oklch(0.72 0.20 240)",
-  },
-  {
-    icon: Wrench,
-    title: "Tools",
-    hint: "Daily workflow",
-    items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma"],
-    accent: "oklch(0.78 0.14 220)",
-  },
-  {
-    icon: Sparkles,
-    title: "AI Tools",
-    hint: "Augmented engineering",
-    items: ["ChatGPT", "Copilot", "Claude", "Cursor", "—"],
-    accent: "oklch(0.62 0.24 300)",
-  },
-];
+import { skills } from "@/config/portfolio";
 
 export function SkillsGrid() {
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {groups.map((g, i) => (
+      {skills.map((g, i) => (
         <motion.div
           key={g.title}
           initial={{ opacity: 0, y: 20 }}
@@ -89,16 +35,22 @@ export function SkillsGrid() {
           </div>
           <h3 className="relative mt-5 font-display text-lg font-semibold">{g.title}</h3>
           <p className="relative mt-1 text-xs text-muted-foreground">{g.hint}</p>
-          <ul className="relative mt-5 flex flex-wrap gap-1.5">
-            {g.items.map((it) => (
-              <li
-                key={it}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-foreground/80 transition group-hover:border-white/20"
-              >
-                {it}
-              </li>
-            ))}
-          </ul>
+          {g.items.length > 0 ? (
+            <ul className="relative mt-5 flex flex-wrap gap-1.5">
+              {g.items.map((it) => (
+                <li
+                  key={it}
+                  className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-foreground/80 transition group-hover:border-white/20"
+                >
+                  {it}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="relative mt-5 text-[11px] italic text-muted-foreground/70">
+              Add items to this skill group in <code className="font-mono">src/config/portfolio.ts</code>.
+            </p>
+          )}
         </motion.div>
       ))}
     </div>
