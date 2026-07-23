@@ -11,23 +11,21 @@ export function SkillsGrid() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-          className="group relative overflow-hidden rounded-2xl glass p-6 transition duration-500 hover:-translate-y-1"
+          className="group relative overflow-hidden rounded-2xl glass p-6 transition duration-500 hover:-translate-y-1 hover:border-amber-500/30"
         >
+          {/* Radial Gold Hover Glow */}
           <div
             className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             style={{
-              background: `radial-gradient(400px 200px at 30% 0%, ${g.accent.replace(")", " / 0.25)")}, transparent 60%)`,
+              background: `radial-gradient(400px 200px at 30% 0%, rgba(245, 158, 11, 0.25), transparent 60%)`,
             }}
           />
           <div className="relative flex items-start justify-between">
+            {/* ICON CONTAINER - Fixed Amber Gold Theme */}
             <div
-              className="grid h-11 w-11 place-items-center rounded-xl"
-              style={{
-                background: `linear-gradient(135deg, ${g.accent.replace(")", " / 0.2)")}, transparent)`,
-                border: `1px solid ${g.accent.replace(")", " / 0.35)")}`,
-              }}
+              className="grid h-11 w-11 place-items-center rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 shadow-[0_0_15px_-3px_rgba(245,158,11,0.3)] transition group-hover:scale-105 group-hover:border-amber-500/50"
             >
-              <g.icon size={18} style={{ color: g.accent }} />
+              <g.icon size={18} className="text-amber-400" />
             </div>
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
               {String(i + 1).padStart(2, "0")}
@@ -40,7 +38,7 @@ export function SkillsGrid() {
               {g.items.map((it) => (
                 <li
                   key={it}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-foreground/80 transition group-hover:border-white/20"
+                  className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[11px] text-foreground/80 transition group-hover:border-amber-500/30 group-hover:text-amber-300"
                 >
                   {it}
                 </li>

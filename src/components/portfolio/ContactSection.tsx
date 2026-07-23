@@ -9,7 +9,7 @@ export function ContactSection() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
       <div className="glass-strong relative overflow-hidden rounded-3xl p-8">
-        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[oklch(0.62_0.24_300/0.18)] blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
         <h3 className="font-display text-xl font-semibold">{contact.headline}</h3>
         <p className="mt-1 text-sm text-muted-foreground">{contact.subhead}</p>
 
@@ -20,7 +20,7 @@ export function ContactSection() {
                 href={c.href}
                 className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-3 transition hover:-translate-y-0.5 hover:bg-white/[0.05]"
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg glass text-amber-400">
                   <c.icon size={15} />
                 </span>
                 <div className="min-w-0">
@@ -47,7 +47,7 @@ export function ContactSection() {
                 rel="noreferrer"
                 aria-label={s.label}
                 title={s.label}
-                className="grid h-10 w-10 place-items-center rounded-full glass text-muted-foreground transition hover:-translate-y-0.5 hover:text-foreground"
+                className="grid h-10 w-10 place-items-center rounded-full glass text-muted-foreground transition hover:-translate-y-0.5 hover:text-amber-400"
               >
                 <s.icon width={16} height={16} />
               </a>
@@ -82,7 +82,7 @@ export function ContactSection() {
               required
               type="text"
               placeholder="Your name"
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-[oklch(0.68_0.22_258/0.6)] focus:bg-white/[0.05]"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
             />
           </label>
           <label className="block">
@@ -93,7 +93,7 @@ export function ContactSection() {
               required
               type="email"
               placeholder="you@domain.com"
-              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-[oklch(0.68_0.22_258/0.6)] focus:bg-white/[0.05]"
+              className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
             />
           </label>
         </div>
@@ -105,7 +105,7 @@ export function ContactSection() {
           <input
             type="text"
             placeholder="How can I help?"
-            className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-[oklch(0.68_0.22_258/0.6)] focus:bg-white/[0.05]"
+            className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
           />
         </label>
 
@@ -117,7 +117,7 @@ export function ContactSection() {
             required
             rows={5}
             placeholder="Tell me a little about the project or role…"
-            className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-[oklch(0.68_0.22_258/0.6)] focus:bg-white/[0.05]"
+            className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
           />
         </label>
 
@@ -127,7 +127,7 @@ export function ContactSection() {
           </p>
           <button
             type="submit"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_20px_50px_-15px_oklch(0.68_0.22_258/0.65)] transition hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_20px_50px_-15px_rgba(245,158,11,0.5)] transition hover:-translate-y-0.5"
           >
             <Send size={15} className="transition group-hover:translate-x-0.5" />
             Send message

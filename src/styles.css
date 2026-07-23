@@ -45,26 +45,27 @@
 :root {
   --radius: 1rem;
 
-  /* Palette: black, deep navy, electric blue, cyan, purple */
-  --background: oklch(0.13 0.03 265);              /* near-black navy */
+  /* Palette: Gold Theme */
+  --background: #121212;
   --foreground: oklch(0.97 0.01 250);
 
-  --navy: oklch(0.19 0.05 265);
-  --electric: oklch(0.68 0.22 258);                /* electric blue */
-  --cyan: oklch(0.82 0.16 210);                    /* cyan */
-  --violet: oklch(0.62 0.24 300);                  /* purple */
+  --navy: #18181b;
 
-  --card: oklch(0.19 0.04 265);
+  --electric: oklch(0.75 0.18 75);
+  --cyan: oklch(0.82 0.16 85);
+  --violet: oklch(0.65 0.18 55);
+
+  --card: #18181b;
   --card-foreground: oklch(0.97 0.01 250);
-  --popover: oklch(0.18 0.04 265);
+  --popover: #18181b;
   --popover-foreground: oklch(0.97 0.01 250);
 
   --primary: var(--electric);
-  --primary-foreground: oklch(0.14 0.02 265);
-  --secondary: oklch(0.24 0.05 275);
+  --primary-foreground: #121212;
+  --secondary: #27272a;
   --secondary-foreground: oklch(0.97 0.01 250);
 
-  --muted: oklch(0.22 0.03 265);
+  --muted: #27272a;
   --muted-foreground: oklch(0.72 0.03 260);
 
   --accent: var(--violet);
@@ -73,21 +74,21 @@
   --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(0.98 0.01 250);
 
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
   --ring: var(--electric);
 
-  --gradient-primary: linear-gradient(135deg, var(--electric), var(--violet));
-  --gradient-cool: linear-gradient(135deg, var(--cyan), var(--electric), var(--violet));
-  --gradient-conic: conic-gradient(from 180deg at 50% 50%, oklch(0.82 0.16 210), oklch(0.68 0.22 258), oklch(0.62 0.24 300), oklch(0.82 0.16 210));
+  --gradient-primary: linear-gradient(135deg, #f59e0b, #d97706);
+  --gradient-cool: linear-gradient(135deg, #fef08a, #f59e0b, #b45309);
+  --gradient-conic: conic-gradient(from 180deg at 50% 50%, #fef08a, #f59e0b, #d97706, #fef08a);
 
   --shadow-luxury:
-    0 1px 0 oklch(1 0 0 / 6%) inset,
-    0 10px 40px -12px oklch(0 0 0 / 0.6),
-    0 30px 80px -30px oklch(0.68 0.22 258 / 0.25);
-  --shadow-glow-blue: 0 0 60px -10px oklch(0.68 0.22 258 / 0.55);
-  --shadow-glow-cyan: 0 0 60px -10px oklch(0.82 0.16 210 / 0.5);
-  --shadow-glow-violet: 0 0 60px -10px oklch(0.62 0.24 300 / 0.55);
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 10px 40px -12px rgba(0, 0, 0, 0.6),
+    0 30px 80px -30px rgba(245, 158, 11, 0.25);
+  --shadow-glow-blue: 0 0 60px -10px rgba(245, 158, 11, 0.4);
+  --shadow-glow-cyan: 0 0 60px -10px rgba(251, 191, 36, 0.4);
+  --shadow-glow-violet: 0 0 60px -10px rgba(217, 119, 6, 0.4);
 }
 
 @layer base {
@@ -99,14 +100,14 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: #121212 !important;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(1000px 600px at 15% -10%, oklch(0.62 0.24 300 / 0.22), transparent 60%),
-      radial-gradient(900px 500px at 90% 0%, oklch(0.68 0.22 258 / 0.22), transparent 60%),
-      radial-gradient(700px 500px at 50% 100%, oklch(0.82 0.16 210 / 0.14), transparent 60%);
+      radial-gradient(1000px 600px at 15% -10%, rgba(245, 158, 11, 0.08), transparent 60%),
+      radial-gradient(900px 500px at 90% 0%, rgba(217, 119, 6, 0.08), transparent 60%),
+      radial-gradient(700px 500px at 50% 100%, rgba(251, 191, 36, 0.05), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -116,7 +117,7 @@
   }
 
   ::selection {
-    background: oklch(0.68 0.22 258 / 0.35);
+    background: rgba(245, 158, 11, 0.35);
     color: var(--color-foreground);
   }
 
@@ -124,23 +125,23 @@
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, oklch(0.68 0.22 258 / 0.5), oklch(0.62 0.24 300 / 0.5));
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.5), rgba(217, 119, 6, 0.5));
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, oklch(0.68 0.22 258 / 0.8), oklch(0.62 0.24 300 / 0.8));
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.8), rgba(217, 119, 6, 0.8));
   }
 }
 
 @utility glass {
-  background: linear-gradient(180deg, oklch(1 0 0 / 4%), oklch(1 0 0 / 2%));
-  border: 1px solid oklch(1 0 0 / 8%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px) saturate(160%);
 }
 
 @utility glass-strong {
-  background: linear-gradient(180deg, oklch(1 0 0 / 8%), oklch(1 0 0 / 3%));
-  border: 1px solid oklch(1 0 0 / 14%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.14);
   backdrop-filter: blur(28px) saturate(180%);
   box-shadow: var(--shadow-luxury);
 }
@@ -166,7 +167,7 @@
   padding-inline: 1.25rem;
 }
 
-/* Animated gradient border — wrap a child with .glow-border-inner */
+/* Animated gradient border */
 @utility glow-border {
   position: relative;
   isolation: isolate;
@@ -183,10 +184,10 @@
   border-radius: inherit;
   padding: 1px;
   background: conic-gradient(from var(--angle, 0deg),
-    oklch(0.82 0.16 210 / 0.9),
-    oklch(0.68 0.22 258 / 0.9),
-    oklch(0.62 0.24 300 / 0.9),
-    oklch(0.82 0.16 210 / 0.9));
+    rgba(254, 240, 138, 0.9),
+    rgba(245, 158, 11, 0.9),
+    rgba(217, 119, 6, 0.9),
+    rgba(254, 240, 138, 0.9));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -211,13 +212,13 @@
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) }
-  50% { transform: translateY(-14px) }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
 }
 
 @keyframes float-slower {
-  0%, 100% { transform: translateY(0) translateX(0) }
-  50% { transform: translateY(-20px) translateX(6px) }
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(6px); }
 }
 
 @keyframes twinkle {
@@ -238,8 +239,94 @@
 /* Grid overlay pattern */
 @utility bg-grid {
   background-image:
-    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+}
+/* --- Global Gold Theme Overrides --- */
+
+/* 1. All Icon Boxes & Gradient Containers */
+[class*="bg-violet"],
+[class*="bg-electric"],
+[class*="bg-cyan"],
+[class*="from-blue"],
+[class*="from-cyan"],
+[class*="from-violet"],
+[class*="from-electric"] {
+  background: linear-gradient(135deg, #f59e0b, #b45309) !important;
+  color: #ffffff !important;
+}
+
+/* 2. Text colors for icons & labels */
+[class*="text-violet"],
+[class*="text-electric"],
+[class*="text-cyan"],
+[class*="text-blue"] {
+  color: #fbbf24 !important;
+}
+
+/* 3. Borders & Glow Effects */
+[class*="border-violet"],
+[class*="border-cyan"],
+[class*="border-electric"],
+[class*="border-blue"] {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+/* 4. Glass cards gradient fix */
+.glass, .glass-strong {
+  border-color: rgba(251, 191, 36, 0.15) !important;
+}
+/* Hardcoded Cyan/Purple Gradients Force Override to Amber Gold */
+
+/* 1. Download PDF Button & Official CV Icon Box */
+[class*="from-cyan"],
+[class*="from-sky"],
+[class*="from-blue"],
+[class*="to-purple"],
+[class*="to-violet"],
+[class*="to-indigo"] {
+  --tw-gradient-from: #fbbf24 !important;
+  --tw-gradient-to: #d97706 !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #f59e0b, var(--tw-gradient-to) !important;
+  background-image: linear-gradient(135deg, #fbbf24, #f59e0b, #b45309) !important;
+}
+
+/* 2. Text/Icon Glow Colors */
+[class*="text-cyan"],
+[class*="text-sky"] {
+  color: #fef08a !important;
+}
+
+/* 3. Shadow/Glow Effect under the CV Card */
+[class*="shadow-glow-cyan"],
+[class*="shadow-glow-blue"] {
+  box-shadow: 0 0 50px -10px rgba(245, 158, 11, 0.4) !important;
+}
+/* ==========================================================
+   FORCE OVERRIDE FOR SECTION BADGES & TOP DOTS TO AMBER/GOLD
+   ========================================================== */
+
+/* 1. OKLCH Variable overrides so TailWind bg-primary picks Gold */
+:root {
+  --electric: oklch(0.75 0.18 75) !important; /* Force Golden Light */
+  --cyan: oklch(0.82 0.16 85) !important;
+  --primary: #f59e0b !important;
+}
+
+/* 2. Target Section Header Dot (e.g. • ABOUT) */
+section span.h-1\.5.w-1\.5,
+div[class*="rounded-full"] > span.h-1\.5,
+div[class*="rounded-full"] > span[class*="bg-"] {
+  background-color: #f59e0b !important; /* Bright Amber Gold */
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.8) !important;
+}
+
+/* 3. Target Section Header Badge Border & Text */
+section div[class*="rounded-full"][class*="border"],
+div[class*="inline-flex"][class*="rounded-full"] {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  color: #fbbf24 !important;
 }

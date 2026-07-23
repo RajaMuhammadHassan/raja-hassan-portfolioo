@@ -12,10 +12,12 @@ export function GithubSection() {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
       <div className="glass-strong relative overflow-hidden rounded-2xl p-6">
-        <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-[oklch(0.68_0.22_258/0.18)] blur-3xl" />
+        {/* Background Glow - Gold Accent */}
+        <div className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-amber-500/10 blur-3xl" />
+        
         <div className="flex items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-3">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl glass">
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl glass text-amber-400">
               <GithubIcon width={18} height={18} />
             </span>
             <div className="min-w-0">
@@ -27,7 +29,7 @@ export function GithubSection() {
             href={github.profileUrl}
             target="_blank"
             rel="noreferrer"
-            className="hidden shrink-0 rounded-full glass px-3.5 py-1.5 text-xs text-foreground/80 transition hover:text-foreground sm:inline-flex"
+            className="hidden shrink-0 rounded-full bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 px-3.5 py-1.5 text-xs font-semibold text-zinc-950 shadow-[0_10px_25px_-5px_rgba(245,158,11,0.4)] transition hover:-translate-y-0.5 sm:inline-flex"
           >
             Visit Profile
           </a>
@@ -36,11 +38,21 @@ export function GithubSection() {
         <div className="mt-6 grid grid-cols-3 gap-3">
           {github.stats.map((s) => {
             const Icon = iconByLabel[s.label] ?? Star;
+            const isCommits = s.label === "Commits";
             return (
-              <div key={s.label} className="rounded-xl glass p-4">
-                <Icon size={14} className="text-muted-foreground" />
-                <div className="mt-2 font-display text-xl font-semibold">{s.value}</div>
-                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
+              <div 
+                key={s.label} 
+                className={`rounded-xl p-4 transition ${
+                  isCommits 
+                    ? "border border-amber-500/30 bg-amber-500/10" 
+                    : "glass"
+                }`}
+              >
+                <Icon size={14} className={isCommits ? "text-amber-400" : "text-amber-400/70"} />
+                <div className={`mt-2 font-display text-xl font-semibold ${isCommits ? "text-amber-400" : "text-foreground"}`}>
+                  {s.value}
+                </div>
+                <div className={`text-[10px] uppercase tracking-widest ${isCommits ? "text-amber-300/80" : "text-muted-foreground"}`}>
                   {s.label}
                 </div>
               </div>
@@ -48,7 +60,7 @@ export function GithubSection() {
           })}
         </div>
 
-        {/* Contribution graph placeholder */}
+        {/* Contribution graph placeholder - Gold Theme Colors */}
         <div className="mt-6">
           <div className="mb-2 flex items-center justify-between text-[10px] uppercase tracking-widest text-muted-foreground">
             <span>Contributions</span>
@@ -60,14 +72,14 @@ export function GithubSection() {
               const lvl = seed % 5;
               const bg =
                 lvl === 0
-                  ? "oklch(1 0 0 / 0.05)"
+                  ? "rgba(255, 255, 255, 0.05)"
                   : lvl === 1
-                    ? "oklch(0.82 0.16 210 / 0.25)"
+                    ? "rgba(245, 158, 11, 0.2)"
                     : lvl === 2
-                      ? "oklch(0.68 0.22 258 / 0.45)"
+                      ? "rgba(245, 158, 11, 0.45)"
                       : lvl === 3
-                        ? "oklch(0.62 0.24 300 / 0.6)"
-                        : "oklch(0.62 0.24 300 / 0.85)";
+                        ? "rgba(245, 158, 11, 0.7)"
+                        : "rgba(251, 191, 36, 0.95)";
               return (
                 <span
                   key={i}
@@ -90,18 +102,20 @@ export function GithubSection() {
                 href={r.url}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition hover:-translate-y-0.5 hover:bg-white/[0.05]"
+                className="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition hover:-translate-y-0.5 hover:border-amber-500/30 hover:bg-white/[0.05]"
               >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <span className="truncate font-mono text-sm text-foreground">{r.name}</span>
+                    <span className="truncate font-mono text-sm text-foreground group-hover:text-amber-400 transition">
+                      {r.name}
+                    </span>
                     <span className="rounded-full border border-white/10 px-1.5 py-0.5 text-[9px] uppercase tracking-widest text-muted-foreground">
                       public
                     </span>
                   </div>
                   <p className="mt-1 truncate text-xs text-muted-foreground">{r.description}</p>
                 </div>
-                <span className="shrink-0 font-mono text-[10px] text-muted-foreground">↗</span>
+                <span className="shrink-0 font-mono text-[10px] text-muted-foreground group-hover:text-amber-400 transition">↗</span>
               </a>
             </li>
           ))}

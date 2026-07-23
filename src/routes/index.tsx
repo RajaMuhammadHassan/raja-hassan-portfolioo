@@ -104,7 +104,7 @@ function Portfolio() {
           description="A downloadable PDF resume will be available here."
         >
           <div className="glass-strong relative overflow-hidden rounded-3xl p-8">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[oklch(0.68_0.22_258/0.18)] blur-3xl" />
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
             <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
@@ -120,7 +120,7 @@ function Portfolio() {
                   <a
                     href={resume.downloadUrl}
                     download={resume.fileName}
-                    className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[oklch(0.82_0.16_210)] via-[oklch(0.68_0.22_258)] to-[oklch(0.62_0.24_300)] px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_20px_50px_-15px_oklch(0.68_0.22_258/0.65)] transition hover:-translate-y-0.5"
+                    className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_20px_50px_-15px_rgba(245,158,11,0.5)] transition hover:-translate-y-0.5"
                   >
                     <Download size={15} />
                     Download PDF
@@ -136,35 +136,27 @@ function Portfolio() {
                   </a>
                 </div>
               </div>
-              <div className="relative aspect-[8.5/11] max-h-[420px] overflow-hidden rounded-2xl ring-1 ring-white/10">
-                <div className="absolute inset-0 bg-[radial-gradient(600px_240px_at_20%_0%,oklch(0.82_0.16_210/0.25),transparent_60%),radial-gradient(600px_240px_at_100%_100%,oklch(0.62_0.24_300/0.25),transparent_60%)]" />
-                <div className="absolute inset-0 bg-grid opacity-40" />
-                <div className="relative h-full w-full p-6">
-                  <div className="h-3 w-40 rounded bg-white/20" />
-                  <div className="mt-2 h-2 w-56 rounded bg-white/10" />
-                  <div className="mt-6 space-y-2">
-                    {[90, 75, 82, 68, 88, 70, 78].map((w, i) => (
-                      <div
-                        key={i}
-                        className="h-2 rounded bg-white/10"
-                        style={{ width: `${w}%` }}
-                      />
-                    ))}
+              <div className="relative flex min-h-[350px] w-full items-center justify-center overflow-hidden rounded-2xl ring-1 ring-white/10 bg-gradient-to-br from-white/[0.05] to-transparent p-6">
+                {/* Background Glow */}
+                <div className="absolute h-48 w-48 rounded-full bg-amber-500/20 blur-3xl" />
+                
+                {/* Center Icon & Badge */}
+                <div className="relative z-10 flex flex-col items-center text-center">
+                  <div className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-amber-300 via-amber-500 to-amber-600 shadow-[0_15px_35px_-5px_rgba(245,158,11,0.5)]">
+                    <FileText size={40} className="text-zinc-950" />
                   </div>
-                  <div className="mt-6 h-3 w-32 rounded bg-white/20" />
-                  <div className="mt-2 space-y-2">
-                    {[86, 72, 90, 65].map((w, i) => (
-                      <div
-                        key={i}
-                        className="h-2 rounded bg-white/10"
-                        style={{ width: `${w}%` }}
-                      />
-                    ))}
-                  </div>
-                  <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    <span>{resume.fileName}</span>
-                    <span>preview</span>
-                  </div>
+                  
+                  <p className="mt-4 font-display text-base font-semibold text-foreground">
+                    Official Curriculum Vitae
+                  </p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    Updated for 2026 • Verified PDF
+                  </p>
+
+                  <span className="mt-4 inline-flex items-center gap-1.5 rounded-full glass px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                    Ready to download
+                  </span>
                 </div>
               </div>
             </div>

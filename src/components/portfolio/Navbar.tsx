@@ -45,18 +45,20 @@ export function Navbar() {
       <div className="container-page pt-4">
         <nav
           className={`flex items-center justify-between rounded-2xl px-3 py-2.5 transition-all duration-300 sm:px-4 sm:py-3 ${
-            scrolled ? "glass-strong shadow-luxury" : "glass"
+            scrolled ? "glass-strong shadow-luxury border-amber-500/20" : "glass"
           }`}
         >
+          {/* Logo / RH Badge (Gold/Amber Theme) */}
           <a href="#home" className="group flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-[oklch(0.72_0.22_265)] to-[oklch(0.62_0.24_300)] font-display text-sm font-bold text-primary-foreground shadow-[0_10px_30px_-10px_oklch(0.68_0.22_258/0.6)]">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-amber-500/10 border border-amber-500/40 font-display text-sm font-bold text-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.3)] transition group-hover:scale-105 group-hover:border-amber-400">
               {site.initials}
             </span>
-            <span className="hidden font-display text-sm font-semibold tracking-wide sm:block">
+            <span className="hidden font-display text-sm font-semibold tracking-wide sm:block text-foreground group-hover:text-amber-300 transition">
               {site.shortName}
             </span>
           </a>
 
+          {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-0.5 lg:flex">
             {navLinks.map((l) => (
               <li key={l.href}>
@@ -64,14 +66,14 @@ export function Navbar() {
                   href={l.href}
                   className={`relative rounded-full px-3.5 py-1.5 text-sm transition-colors ${
                     active === l.href
-                      ? "text-foreground"
+                      ? "text-amber-300 font-medium"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {active === l.href && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute inset-0 -z-10 rounded-full bg-white/10 ring-1 ring-white/10"
+                      className="absolute inset-0 -z-10 rounded-full bg-amber-500/10 border border-amber-500/30"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -81,10 +83,12 @@ export function Navbar() {
             ))}
           </ul>
 
+          {/* Right Button & Mobile Menu Toggle */}
           <div className="flex items-center gap-2">
+            {/* "Let's talk" Button (Gold/Amber Theme) */}
             <a
               href="#contact"
-              className="hidden rounded-full bg-gradient-to-r from-[oklch(0.72_0.22_265)] to-[oklch(0.62_0.24_300)] px-4 py-2 text-sm font-medium text-primary-foreground shadow-lg shadow-[oklch(0.72_0.22_265/0.3)] transition hover:-translate-y-0.5 hover:opacity-95 md:inline-block"
+              className="hidden rounded-full bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 px-5 py-2 text-sm font-bold text-zinc-950 shadow-[0_0_20px_rgba(245,158,11,0.4)] transition hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] md:inline-block"
             >
               Let's talk
             </a>
@@ -109,6 +113,7 @@ export function Navbar() {
           </div>
         </nav>
 
+        {/* Mobile Dropdown Menu */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -116,7 +121,7 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="glass-strong mt-2 overflow-hidden rounded-2xl p-2 lg:hidden"
+              className="glass-strong mt-2 overflow-hidden rounded-2xl p-2 lg:hidden border border-amber-500/20"
             >
               <ul className="flex flex-col">
                 {navLinks.map((l, i) => (
@@ -131,7 +136,7 @@ export function Navbar() {
                       onClick={() => setOpen(false)}
                       className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm transition ${
                         active === l.href
-                          ? "bg-white/[0.06] text-foreground"
+                          ? "bg-amber-500/10 text-amber-300 font-medium"
                           : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                       }`}
                     >

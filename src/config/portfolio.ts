@@ -35,11 +35,9 @@ import {
 import {
   GithubIcon,
   LinkedinIcon,
-  XIcon,
   InstagramIcon,
   DiscordIcon,
   WhatsappIcon,
-  YoutubeIcon,
 } from "@/components/portfolio/SocialIcons";
 
 type IconType = LucideIcon | ComponentType<SVGProps<SVGSVGElement>>;
@@ -58,7 +56,7 @@ export const site = {
   seo: {
     title: "Raja Muhammad Hassan — Software Engineer",
     description:
-      "Portfolio of Raja Muhammad Hassan — Software Engineering student at NUML crafting modern, high-performance web experiences.",
+      "Portfolio of Raja Muhammad Hassan — Software Engineering student at NUML University, high-performance web experiences.",
   },
 };
 
@@ -80,14 +78,14 @@ export const hero = {
   firstName: "Raja Muhammad",
   lastName: "Hassan",
   tagline: "Software Engineer",
-  bio: "I design and engineer refined, high-performance digital products — precise typography, considered motion, production-grade code.",
+  bio: "Software Engineering student at NUML passionate about Java, C++, Python, AI, and building practical software projects while continuously improving my skills.",
   cta: {
     primary: { label: "View my work", href: "#projects" },
     secondary: { label: "Download Resume", href: "#resume" },
     tertiary: { label: "Let's talk", href: "#contact" },
   },
   meta: [
-    { k: "Focus", v: "Full-stack" },
+    { k: "Focus", v: "Artificial Intelligence" },
     { k: "Based", v: "Pakistan" },
     { k: "Status", v: "Student" },
   ],
@@ -96,7 +94,6 @@ export const hero = {
     { label: "Java", top: "-4%", left: "-8%", delay: 0.2, float: "animate-float" },
     { label: "C++", top: "18%", right: "-12%", delay: 0.35, float: "animate-float-slower" },
     { label: "Python", top: "48%", left: "-14%", delay: 0.5, float: "animate-float-slower" },
-    { label: "React", top: "62%", right: "-10%", delay: 0.6, float: "animate-float" },
     { label: "GitHub", bottom: "2%", left: "6%", delay: 0.75, float: "animate-float" },
     { label: "AI", bottom: "-2%", right: "10%", delay: 0.9, float: "animate-float-slower" },
   ],
@@ -107,7 +104,7 @@ export const hero = {
     `}`,
     `await deploy({ quality: "premium" });`,
     `// designing the future, one commit at a time`,
-    `type Stack = "Java" | "C++" | "Python" | "React";`,
+    `type Stack = "Java" | "C++" | "Python" | "Artificial Intelligence";`,
     `interface Avatar { interactive: true; dimension: 3; }`,
   ],
   avatar: {
@@ -173,42 +170,28 @@ export const skills: SkillGroup[] = [
     icon: Code2,
     title: "Programming Languages",
     hint: "Core problem-solving stack",
-    items: ["Java", "C++", "Python", "JavaScript", "TypeScript"],
+    items: ["Java", "C++", "Python", "JavaScript"],
     accent: "oklch(0.82 0.16 210)",
   },
   {
     icon: Layout,
     title: "Frontend",
     hint: "Interfaces & experiences",
-    items: ["HTML", "CSS", "Tailwind", "React", "Next.js"],
+    items: ["HTML", "CSS"],
     accent: "oklch(0.68 0.22 258)",
-  },
-  {
-    icon: Server,
-    title: "Backend",
-    hint: "APIs & services",
-    items: ["Node.js", "REST APIs", "Express"],
-    accent: "oklch(0.62 0.24 300)",
-  },
-  {
-    icon: Database,
-    title: "Databases",
-    hint: "Data & persistence",
-    items: ["SQL", "MySQL", "PostgreSQL", "SQLite"],
-    accent: "oklch(0.72 0.20 240)",
   },
   {
     icon: Wrench,
     title: "Tools",
     hint: "Daily workflow",
-    items: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Figma"],
+    items: ["Git", "GitHub", "VS Code", "Chatgpt", "Claude"],
     accent: "oklch(0.78 0.14 220)",
   },
   {
     icon: Sparkles,
     title: "AI Tools",
     hint: "Augmented engineering",
-    items: ["ChatGPT", "Copilot", "Claude", "Cursor"],
+    items: ["ChatGPT", "Copilot", "Claude", "Gemini","Notebooklm","Gamma","HiGen","Perplexity","hi3d"],
     accent: "oklch(0.62 0.24 300)",
   },
 ];
@@ -230,42 +213,37 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "project-01",
-    title: "Project title — TBA",
-    description: "Concise description of the problem, approach, and impact.",
-    stack: ["React", "TypeScript", "Tailwind"],
+    slug: "Car Rental - System",
+    title: "Car Rental — System",
+    description: "A Java-based Car Rental System that allows users to manage customers, vehicles, bookings, and rental records using object-oriented programming concepts.",
+    stack: ["Java"],
     featured: true,
+    image : "/Car Rental System.png",
+    links: {
+      github: "https://github.com/RajaMuhammadHassan/Car-Rental-System",
+    },
   },
   {
-    slug: "project-02",
-    title: "Project title — TBA",
-    description: "Concise description of the problem, approach, and impact.",
-    stack: ["Next.js", "Node.js", "SQL"],
+    slug: "Railway-Ticket-Booking-System",
+    title: "Railway-Ticket-Booking — System",
+    description: "A C++ Railway Ticket Booking System developed using object-oriented programming and file handling to manage passenger information, ticket reservations, and train records.",
+    stack: ["C++"],
+    image : "/Railway-Booking-System.png",
+    links: {
+      github: "https://github.com/RajaMuhammadHassan/Railway-Ticket-Booking-System",
+    },
   },
   {
-    slug: "project-03",
-    title: "Project title — TBA",
-    description: "Concise description of the problem, approach, and impact.",
-    stack: ["Java", "OOP", "JavaFX"],
+    slug: "Quizcraft",
+    title: "Quizcraft-System",
+    description: "AI-powered study tool that turns any notes or topic into an instant custom quiz with scoring, explanations, and weak-topic flashcards. Built with TypeScript, React, and the Gemini API.",
+    stack: ["TypeScript", "HTML", "CSS"],
+    image : "/Quizcraft.png",
+    links: {
+      github: "https://github.com/RajaMuhammadHassan/Quizcraft",
+    },
   },
-  {
-    slug: "project-04",
-    title: "Project title — TBA",
-    description: "Concise description of the problem, approach, and impact.",
-    stack: ["Python", "ML", "Pandas"],
-  },
-  {
-    slug: "project-05",
-    title: "Project title — TBA",
-    description: "Concise description of the problem, approach, and impact.",
-    stack: ["C++", "DSA", "CLI"],
-  },
-  {
-    slug: "project-06",
-    title: "Project title — TBA",
-    description: "Concise description of the problem, approach, and impact.",
-    stack: ["React", "Framer Motion", "UI/UX"],
-  },
+  
 ];
 
 /* ── Certificates ─────────────────────────────────────────── */
@@ -279,12 +257,11 @@ export type Certificate = {
 };
 
 export const certificates: Certificate[] = [
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
-  { title: "Certificate title — TBA", issuer: "Issuer", date: "Year" },
+  { title: "It Advance — Certificate", issuer: "AGT", date: "2024",image: "/it certificate.png"   },
+  { title: "English Language(IELTS) — Certificate", issuer: "Navttac", date: "2025",image:"/english language(IELTS) Certificate.png", },
+  { title: "JavaScript — Certificate", issuer: "Information Technology SPECIALIST", date: "2026",image:"/JavaScript Certificate.png" },
+  { title: "Ai for Everyone — Certificate", issuer: "Coursera", date: "2026",image:"/Ai for Everyone.png" },
+
 ];
 
 /* ── Education ────────────────────────────────────────────── */
@@ -307,41 +284,40 @@ export const education: Milestone[] = [
   },
   {
     icon: BookOpen,
-    status: "Placeholder",
-    title: "Intermediate / Pre-Engineering",
-    place: "Institution — to be added",
-    detail: "Details will be added.",
+    status: "completed",
+    title: "Intermediate / ICS",
+    place: "502 Model College",
+    detail: "Completed Intermediate in Computer Science (ICS), developing a strong foundation in Computer Science, Mathematics, and analytical problem-solving while preparing for a career in Software Engineering.",
   },
   {
     icon: School,
-    status: "Placeholder",
-    title: "Secondary School Certificate",
-    place: "Institution — to be added",
-    detail: "Details will be added.",
+    status: "completed",
+    title: "Secondary School Certificate / Computer Science",
+    place: "502 Model College",
+    detail: "Completed Secondary School Certificate (SSC) with a focus on Science, building a strong academic foundation in Mathematics, Physics, and analytical thinking.",
   },
 ];
 
 /* ── GitHub ───────────────────────────────────────────────── */
 export const github = {
-  handle: "handle-to-be-added",
-  profileUrl: "#",
+  handle: "RajaMuhammadHassan",
+  profileUrl: "https://github.com/RajaMuhammadHassan",
   stats: [
     { label: "Stars", value: "—" },
     { label: "Forks", value: "—" },
     { label: "Commits", value: "—" },
   ],
   pinned: [
-    { name: "repo-name-1", description: "Short description placeholder.", url: "#" },
-    { name: "repo-name-2", description: "Short description placeholder.", url: "#" },
-    { name: "repo-name-3", description: "Short description placeholder.", url: "#" },
-    { name: "repo-name-4", description: "Short description placeholder.", url: "#" },
+    { name: "Car-Rental-System", description: "A Java-based car rental management system with booking, customer, and vehicle management features.", url: "https://github.com/RajaMuhammadHassan/Car-Rental-System" },
+    { name: "Railway-ticket-booking-System", description: "A C++ railway ticket booking system demonstrating object-oriented programming and file handling.", url: "https://github.com/RajaMuhammadHassan/Railway-Ticket-Booking-System" },
+    { name: "Quizcraft", description: "An interactive quiz application designed for learning and testing knowledge with a simple user interface.", url: "https://github.com/RajaMuhammadHassan/Quizcraft" },
   ],
 };
 
 /* ── Resume ───────────────────────────────────────────────── */
 export const resume = {
-  downloadUrl: "#",     // point at your PDF when ready
-  viewUrl: "#",
+  downloadUrl: "/resume.pdf",     // point at your PDF when ready
+  viewUrl: "/resume.pdf",
   fileName: "resume.pdf",
   headline: "A concise, engineering-first CV",
   description:
@@ -354,10 +330,10 @@ export const contact = {
   subhead: "Open to internships, collaborations, and thoughtful conversations.",
   responseTime: "Response time: ~24–48h",
   channels: [
-    { icon: Mail as IconType, label: "Email", value: "email@placeholder.dev", href: "mailto:email@placeholder.dev" },
-    { icon: Phone as IconType, label: "Phone", value: "+92 — — — — —", href: "#" },
-    { icon: MessageCircle as IconType, label: "WhatsApp", value: "Handle to be added", href: "#" },
-    { icon: MapPin as IconType, label: "Location", value: "Pakistan", href: "#" },
+    { icon: Mail as IconType, label: "Email", value: "rajahassan4849@gmail.com", href: "rajahassan4849@gmail.com" },
+    { icon: Phone as IconType, label: "Phone", value: "+92 327 5046694", href: "https://wa.me/923275046694" },
+    { icon: MessageCircle as IconType, label: "WhatsApp", value: "+92 327 5046694", href: "https://wa.me/923275046694" },
+    { icon: MapPin as IconType, label: "Location", value: "Rawalpindi Pakistan", href: "#" },
   ],
 };
 
@@ -369,18 +345,14 @@ export type Social = {
 };
 
 export const socials: Social[] = [
-  { label: "GitHub", href: "#", icon: GithubIcon },
-  { label: "LinkedIn", href: "#", icon: LinkedinIcon },
-  { label: "X", href: "#", icon: XIcon },
-  { label: "Instagram", href: "#", icon: InstagramIcon },
-  { label: "Discord", href: "#", icon: DiscordIcon },
-  { label: "WhatsApp", href: "#", icon: WhatsappIcon },
-  { label: "YouTube", href: "#", icon: YoutubeIcon },
+  { label: "GitHub", href: "https://github.com/RajaMuhammadHassan", icon: GithubIcon },
+  { label: "LinkedIn", href: "www.linkedin.com/in/raja-muhammad-hassan", icon: LinkedinIcon },
+  { label: "WhatsApp", href: "https://wa.me/923275046694", icon: WhatsappIcon },
 ];
 
 /* ── Footer ───────────────────────────────────────────────── */
 export const footer = {
   copyright: `© ${new Date().getFullYear()} Raja Muhammad Hassan. Crafted with care.`,
   // Which socials to surface in the footer (subset of the socials array by label).
-  showSocials: ["GitHub", "LinkedIn", "X", "Email"],
+  showSocials: ["GitHub", "LinkedIn", "WhatsApp", "Email"],
 };
