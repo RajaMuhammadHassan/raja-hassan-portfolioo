@@ -1,10 +1,39 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 import { contact, socials } from "@/config/portfolio";
 
 export function ContactSection() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      // ⚠️ Replace YOUR_FORMSPREE_ID with your actual Formspree endpoint ID
+      const response = await fetch("https://formspree.io/f/mlgqpvwp", {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+        form.reset();
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
@@ -61,16 +90,12 @@ export function ContactSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.6 }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSent(true);
-          setTimeout(() => setSent(false), 3500);
-        }}
+        onSubmit={handleSubmit}
         className="glass rounded-3xl p-8"
       >
         <h3 className="font-display text-xl font-semibold">Send a message</h3>
         <p className="mt-1 text-sm text-muted-foreground">
-          Form is a placeholder — wire it up to your inbox when ready.
+          Feel free to reach out for collaborations or project inquiries.
         </p>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -80,6 +105,7 @@ export function ContactSection() {
             </span>
             <input
               required
+              name="name"
               type="text"
               placeholder="Your name"
               className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
@@ -91,6 +117,7 @@ export function ContactSection() {
             </span>
             <input
               required
+              name="email"
               type="email"
               placeholder="you@domain.com"
               className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
@@ -103,6 +130,7 @@ export function ContactSection() {
             Subject
           </span>
           <input
+            name="subject"
             type="text"
             placeholder="How can I help?"
             className="mt-1.5 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
@@ -115,6 +143,7 @@ export function ContactSection() {
           </span>
           <textarea
             required
+            name="message"
             rows={5}
             placeholder="Tell me a little about the project or role…"
             className="mt-1.5 w-full resize-none rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-amber-500/60 focus:bg-white/[0.05]"
@@ -123,14 +152,22 @@ export function ContactSection() {
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            {sent ? "Thanks — I'll get back to you soon." : contact.responseTime}
+            {status === "sent" && "Thanks — I'll get back to you soon!"}
+            {status === "error" && "Something went wrong. Please try again."}
+            {status === "idle" && contact.responseTime}
+            {status === "submitting" && "Sending your message..."}
           </p>
           <button
             type="submit"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_20px_50px_-15px_rgba(245,158,11,0.5)] transition hover:-translate-y-0.5"
+            disabled={status === "submitting"}
+            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 px-5 py-3 text-sm font-semibold text-zinc-950 shadow-[0_20px_50px_-15px_rgba(245,158,11,0.5)] transition hover:-translate-y-0.5 disabled:opacity-50"
           >
-            <Send size={15} className="transition group-hover:translate-x-0.5" />
-            Send message
+            {status === "submitting" ? (
+              <Loader2 size={15} className="animate-spin" />
+            ) : (
+              <Send size={15} className="transition group-hover:translate-x-0.5" />
+            )}
+            {status === "submitting" ? "Sending..." : "Send message"}
           </button>
         </div>
       </motion.form>
